@@ -1,0 +1,14 @@
+.root {
+  background-image: var(--background);
+  font-family: var(--font-family-main), Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

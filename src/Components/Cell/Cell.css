@@ -1,0 +1,64 @@
+.cell {
+    display: flex;
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat 0 -51px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.cell:hover {
+    opacity: 0.8;
+}
+
+.cell_flagged {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -34px -51px;
+}
+
+.cell_bomb {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -85px -51px;
+}
+
+.cell_bomb-selected {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -102px -51px;
+}
+
+.cell_bomb-incorrect {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -119px -51px;
+}
+
+.cell_zero {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -17px -51px;
+}
+
+.cell_one {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat 0 -68px;
+}
+
+.cell_two {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -17px -68px;
+}
+
+.cell_three {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -34px -68px;
+}
+
+
+.cell_four {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -51px -68px;
+}
+
+.cell_five {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -68px -68px;
+}
+
+.cell_six {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -85px -68px;
+}
+
+.cell_seven {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -102px -68px;
+}
+
+.cell_eight {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -119px -68px;
+}

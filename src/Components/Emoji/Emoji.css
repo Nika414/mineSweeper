@@ -1,0 +1,34 @@
+.emoji {
+    display: flex;
+    align-items: center;
+}
+
+.emoji__button {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.emoji__img {
+    width: 26px;
+    height: 26px;
+}
+
+.emoji__img_smile {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat 0 -24px;
+}
+
+.emoji__img_attention {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -54px -24px;
+}
+
+.emoji__img_win {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -81px -24px;
+}
+
+.emoji__img_endGame {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -108px -24px;
+}
