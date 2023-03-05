@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { cloneDeep } from 'lodash';
-import CreateGridBoard from '../../utils/CreateGridBoard';
+import createGridBoard from '../../utils/createGridBoard';
 import Cell from '../Cell/Cell';
 import { revealZeroCells } from '../../utils/revealZeroCells';
 
@@ -15,28 +14,28 @@ export default function Board({ setEmojiStatus, boardNeedUpdating }) {
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    const gridBoard = CreateGridBoard(16, 16, bombAmount);
+    const gridBoard = createGridBoard(16, 16, bombAmount);
     setMarkup(gridBoard.board);
     setBombLocation(gridBoard.bombLocation);
     setNonBombCount(16 * 16 - 20);
   }, [boardNeedUpdating]);
 
-  function toggleFlag(e, colNum, rowNum) {
+  function toggleFlag(e, rowNum, colNum) {
     e.preventDefault();
     const newMarkup = JSON.parse(JSON.stringify(markup));
-    if (newMarkup[colNum][rowNum].value === 'B') {
-      setBombFounded((prev) => (newMarkup[colNum][rowNum].flagged ? prev - 1 : prev + 1));
+    if (newMarkup[rowNum][colNum].value === 'B') {
+      setBombFounded((prev) => (newMarkup[rowNum][colNum].flagged ? prev - 1 : prev + 1));
     } if (bombFounded === bombAmount) {
       setEmojiStatus('win');
       setGameOver(true);
     }
-    newMarkup[colNum][rowNum].flagged = !newMarkup[colNum][rowNum].flagged;
+    newMarkup[rowNum][colNum].flagged = !newMarkup[rowNum][colNum].flagged;
     setMarkup(newMarkup);
   }
 
-  function revealCell(colNum, rowNum) {
+  function revealCell(rowNum, colNum) {
     const newMarkup = cloneDeep(markup);
-    if (newMarkup[colNum][rowNum].value === 'B') {
+    if (newMarkup[rowNum][colNum].value === 'B') {
       for (let i = 0; i < bombLocation.length; i += 1) {
         newMarkup[bombLocation[i][0]][bombLocation[i][1]].revealed = true;
       }
@@ -44,7 +43,7 @@ export default function Board({ setEmojiStatus, boardNeedUpdating }) {
       setGameOver(true);
       setEmojiStatus('endGame');
     }
-    const revealedBoard = revealZeroCells(newMarkup, colNum, rowNum, nonBombCount);
+    const revealedBoard = revealZeroCells(newMarkup, rowNum, colNum, nonBombCount);
     setMarkup(revealedBoard.arr);
     setNonBombCount(revealedBoard.newNonMinesCount);
   }

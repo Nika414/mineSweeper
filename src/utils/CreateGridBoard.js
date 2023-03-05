@@ -1,22 +1,19 @@
-/* eslint-disable no-continue */
-/* eslint-disable consistent-return */
-
 function getRandomInt(max, min = 0) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export default function CreateGridBoard(row, col, bombsTotal) {
+export default function createGridBoard(row, col, bombsTotal) {
   const board = [];
   const bombLocation = [];
 
-  for (let colNum = 0; colNum < row; colNum += 1) {
+  for (let rowNum = 0; rowNum < row; rowNum += 1) {
     const subCol = [];
-    for (let rowNum = 0; rowNum < col; rowNum += 1) {
+    for (let colNum = 0; colNum < col; colNum += 1) {
       subCol.push({
         value: 0,
         revealed: false,
-        colNum,
         rowNum,
+        colNum,
         flagged: false,
       });
     }
@@ -25,12 +22,12 @@ export default function CreateGridBoard(row, col, bombsTotal) {
 
   let bombsCount = 0;
   while (bombsCount < bombsTotal) {
-    const colNum = getRandomInt(0, row - 1);
-    const rowNum = getRandomInt(0, col - 1);
+    const rowNum = getRandomInt(0, row - 1);
+    const colNum = getRandomInt(0, col - 1);
 
-    if (board[colNum][rowNum].value === 0) {
-      board[colNum][rowNum].value = 'B';
-      bombLocation.push([colNum, rowNum]);
+    if (board[rowNum][colNum].value === 0) {
+      board[rowNum][colNum].value = 'B';
+      bombLocation.push([rowNum, colNum]);
       bombsCount += 1;
     }
   }

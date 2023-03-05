@@ -1,15 +1,15 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-plusplus */
-export const revealZeroCells = (originalArr, colNum, rowNum, newNonMinesCount) => {
+export const revealZeroCells = (originalArr, rowNum, colNum, newNonMinesCount) => {
   const arr = JSON.parse(JSON.stringify(originalArr));
 
-  console.log(arr[colNum][rowNum]);
-  if (arr[colNum][rowNum].revealed) {
-    // console.log(arr[colNum][rowNum])
+  console.log(arr[rowNum][colNum]);
+  if (arr[rowNum][colNum].revealed) {
+    // console.log(arr[rowNum][colNum])
     return;
   }
   const flipped = [];
-  flipped.push(arr[colNum][rowNum]);
+  flipped.push(arr[rowNum][colNum]);
   while (flipped.length !== 0) {
     const single = flipped.pop();
 
@@ -23,131 +23,131 @@ export const revealZeroCells = (originalArr, colNum, rowNum, newNonMinesCount) =
     }
 
     if (
-      single.colNum > 0
-      && single.rowNum > 0
-      && arr[single.colNum - 1][single.rowNum - 1].value === 0
-      && !arr[single.colNum - 1][single.rowNum - 1].revealed
+      single.rowNum > 0
+      && single.colNum > 0
+      && arr[single.rowNum - 1][single.colNum - 1].value === 0
+      && !arr[single.rowNum - 1][single.colNum - 1].revealed
     ) {
-      flipped.push(arr[single.colNum - 1][single.rowNum - 1]);
+      flipped.push(arr[single.rowNum - 1][single.colNum - 1]);
     }
     if (
-      single.colNum < arr.length - 1
-      && single.rowNum < arr[0].length - 1
-      && arr[single.colNum + 1][single.rowNum + 1].value === 0
-      && !arr[single.colNum + 1][single.rowNum + 1].revealed
+      single.rowNum < arr.length - 1
+      && single.colNum < arr[0].length - 1
+      && arr[single.rowNum + 1][single.colNum + 1].value === 0
+      && !arr[single.rowNum + 1][single.colNum + 1].revealed
     ) {
-      flipped.push(arr[single.colNum + 1][single.rowNum + 1]);
+      flipped.push(arr[single.rowNum + 1][single.colNum + 1]);
     }
     if (
-      single.colNum < arr.length - 1
-      && single.rowNum > 0
-      && arr[single.colNum + 1][single.rowNum - 1].value === 0
-      && !arr[single.colNum + 1][single.rowNum - 1].revealed
+      single.rowNum < arr.length - 1
+      && single.colNum > 0
+      && arr[single.rowNum + 1][single.colNum - 1].value === 0
+      && !arr[single.rowNum + 1][single.colNum - 1].revealed
     ) {
-      flipped.push(arr[single.colNum + 1][single.rowNum - 1]);
+      flipped.push(arr[single.rowNum + 1][single.colNum - 1]);
     }
     if (
-      single.colNum > 0
-      && single.rowNum < arr[0].length - 1
-      && arr[single.colNum - 1][single.rowNum + 1].value === 0
-      && !arr[single.colNum - 1][single.rowNum + 1].revealed
+      single.rowNum > 0
+      && single.colNum < arr[0].length - 1
+      && arr[single.rowNum - 1][single.colNum + 1].value === 0
+      && !arr[single.rowNum - 1][single.colNum + 1].revealed
     ) {
-      flipped.push(arr[single.colNum - 1][single.rowNum + 1]);
+      flipped.push(arr[single.rowNum - 1][single.colNum + 1]);
     }
 
     // Single ones
     if (
-      single.colNum > 0
-      && arr[single.colNum - 1][single.rowNum].value === 0
-      && !arr[single.colNum - 1][single.rowNum].revealed
-    ) {
-      flipped.push(arr[single.colNum - 1][single.rowNum]);
-    }
-    if (
-      single.colNum < arr.length - 1
-      && arr[single.colNum + 1][single.rowNum].value === 0
-      && !arr[single.colNum + 1][single.rowNum].revealed
-    ) {
-      flipped.push(arr[single.colNum + 1][single.rowNum]);
-    }
-    if (
       single.rowNum > 0
-      && arr[single.colNum][single.rowNum - 1].value === 0
-      && !arr[single.colNum][single.rowNum - 1].revealed
+      && arr[single.rowNum - 1][single.colNum].value === 0
+      && !arr[single.rowNum - 1][single.colNum].revealed
     ) {
-      flipped.push(arr[single.colNum][single.rowNum - 1]);
+      flipped.push(arr[single.rowNum - 1][single.colNum]);
     }
     if (
-      single.rowNum < arr[0].length - 1
-      && arr[single.colNum][single.rowNum + 1].value === 0
-      && !arr[single.colNum][single.rowNum + 1].revealed
+      single.rowNum < arr.length - 1
+      && arr[single.rowNum + 1][single.colNum].value === 0
+      && !arr[single.rowNum + 1][single.colNum].revealed
     ) {
-      flipped.push(arr[single.colNum][single.rowNum + 1]);
+      flipped.push(arr[single.rowNum + 1][single.colNum]);
+    }
+    if (
+      single.colNum > 0
+      && arr[single.rowNum][single.colNum - 1].value === 0
+      && !arr[single.rowNum][single.colNum - 1].revealed
+    ) {
+      flipped.push(arr[single.rowNum][single.colNum - 1]);
+    }
+    if (
+      single.colNum < arr[0].length - 1
+      && arr[single.rowNum][single.colNum + 1].value === 0
+      && !arr[single.rowNum][single.colNum + 1].revealed
+    ) {
+      flipped.push(arr[single.rowNum][single.colNum + 1]);
     }
 
     // Start Revealing Items
     if (
-      single.colNum > 0
-      && single.rowNum > 0
-      && !arr[single.colNum - 1][single.rowNum - 1].revealed
+      single.rowNum > 0
+      && single.colNum > 0
+      && !arr[single.rowNum - 1][single.colNum - 1].revealed
     ) {
       // Top Left Reveal
 
-      arr[single.colNum - 1][single.rowNum - 1].revealed = true;
+      arr[single.rowNum - 1][single.colNum - 1].revealed = true;
       newNonMinesCount--;
     }
 
-    if (single.rowNum > 0 && !arr[single.colNum][single.rowNum - 1].revealed) {
+    if (single.colNum > 0 && !arr[single.rowNum][single.colNum - 1].revealed) {
       // Top Reveal
-      arr[single.colNum][single.rowNum - 1].revealed = true;
+      arr[single.rowNum][single.colNum - 1].revealed = true;
       newNonMinesCount--;
     }
 
     if (
-      single.colNum < arr.length - 1
-      && single.rowNum > 0
-      && !arr[single.colNum + 1][single.rowNum - 1].revealed
+      single.rowNum < arr.length - 1
+      && single.colNum > 0
+      && !arr[single.rowNum + 1][single.colNum - 1].revealed
     ) {
       // Top Right Reveal
-      arr[single.colNum + 1][single.rowNum - 1].revealed = true;
+      arr[single.rowNum + 1][single.colNum - 1].revealed = true;
       newNonMinesCount--;
     }
 
-    if (single.colNum > 0 && !arr[single.colNum - 1][single.rowNum].revealed) {
+    if (single.rowNum > 0 && !arr[single.rowNum - 1][single.colNum].revealed) {
       // Left Reveal
-      arr[single.colNum - 1][single.rowNum].revealed = true;
+      arr[single.rowNum - 1][single.colNum].revealed = true;
       newNonMinesCount--;
     }
 
-    if (single.colNum < arr.length - 1 && !arr[single.colNum + 1][single.rowNum].revealed) {
+    if (single.rowNum < arr.length - 1 && !arr[single.rowNum + 1][single.colNum].revealed) {
       // Right Reveal
-      arr[single.colNum + 1][single.rowNum].revealed = true;
+      arr[single.rowNum + 1][single.colNum].revealed = true;
       newNonMinesCount--;
     }
 
     if (
-      single.colNum > 0
-      && single.rowNum < arr[0].length - 1
-      && !arr[single.colNum - 1][single.rowNum + 1].revealed
+      single.rowNum > 0
+      && single.colNum < arr[0].length - 1
+      && !arr[single.rowNum - 1][single.colNum + 1].revealed
     ) {
       // Bottom Left Reveal
-      arr[single.colNum - 1][single.rowNum + 1].revealed = true;
+      arr[single.rowNum - 1][single.colNum + 1].revealed = true;
       newNonMinesCount--;
     }
 
-    if (single.rowNum < arr[0].length - 1 && !arr[single.colNum][single.rowNum + 1].revealed) {
+    if (single.colNum < arr[0].length - 1 && !arr[single.rowNum][single.colNum + 1].revealed) {
       // Bottom Reveal
-      arr[single.colNum][single.rowNum + 1].revealed = true;
+      arr[single.rowNum][single.colNum + 1].revealed = true;
       newNonMinesCount--;
     }
 
     if (
-      single.colNum < arr.length - 1
-      && single.rowNum < arr[0].length - 1
-      && !arr[single.colNum + 1][single.rowNum + 1].revealed
+      single.rowNum < arr.length - 1
+      && single.colNum < arr[0].length - 1
+      && !arr[single.rowNum + 1][single.colNum + 1].revealed
     ) {
       // Bottom Right Reveal
-      arr[single.colNum + 1][single.rowNum + 1].revealed = true;
+      arr[single.rowNum + 1][single.colNum + 1].revealed = true;
       newNonMinesCount--;
     }
   }

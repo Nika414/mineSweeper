@@ -1,8 +1,8 @@
-import CreateGridBoard from '../../utils/CreateGridBoard';
+import createGridBoard from '../../utils/createGridBoard';
 import Game from '../Game/Game';
 
 function App() {
-  console.log(CreateGridBoard(16, 16, 6));
+  console.log(createGridBoard(16, 16, 6));
 
   return (
     <div className="app">

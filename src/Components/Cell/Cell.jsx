@@ -48,11 +48,11 @@ export default function Cell({
     if (cell.value === 'B') {
       setIsBombDetected(true);
     }
-    onClick(cell.colNum, cell.rowNum);
+    onClick(cell.rowNum, cell.colNum);
   }
 
   function handleRightClick(e) {
-    onRightClick(e, cell.colNum, cell.rowNum);
+    onRightClick(e, cell.rowNum, cell.colNum);
   }
 
   return (
