@@ -4,35 +4,44 @@ import createGridBoard from '../../utils/createGridBoard';
 import Cell from '../Cell/Cell';
 import { revealZeroCells } from '../../utils/revealZeroCells';
 
-const bombAmount = 20;
-
-export default function Board({ setEmojiStatus, boardNeedUpdating, clearNeedUpdate }) {
+export default function Board({
+  setEmojiStatus,
+  boardNeedUpdating,
+  clearNeedUpdate,
+  width,
+  height,
+  bombAmount,
+  setBombCounter,
+  gameOver,
+  setGameOver,
+}) {
   const [markup, setMarkup] = useState([]);
   const [bombLocation, setBombLocation] = useState([]);
   const [nonBombCount, setNonBombCount] = useState(0);
   const [bombFounded, setBombFounded] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     if (boardNeedUpdating) {
-      const gridBoard = createGridBoard(16, 16, bombAmount);
+      const gridBoard = createGridBoard(height, width, bombAmount);
       setMarkup(gridBoard.board);
       setBombLocation(gridBoard.bombLocation);
-      setNonBombCount(16 * 16 - 20);
-      clearNeedUpdate();
+      setNonBombCount(height * width - bombAmount);
       setGameOver(false);
+      setEmojiStatus('smile');
     }
   }, [boardNeedUpdating]);
 
   function toggleFlag(e, rowNum, colNum) {
     e.preventDefault();
     const newMarkup = cloneDeep(markup);
+    setBombCounter((prev) => prev - 1);
     if (newMarkup[rowNum][colNum].value === 'B') {
       setBombFounded((prev) => (newMarkup[rowNum][colNum].flagged ? prev - 1 : prev + 1));
     } if (bombFounded === bombAmount) {
       setEmojiStatus('win');
       setGameOver(true);
     }
+    console.log(2);
     newMarkup[rowNum][colNum].flagged = !newMarkup[rowNum][colNum].flagged;
     setMarkup(newMarkup);
   }
@@ -52,20 +61,19 @@ export default function Board({ setEmojiStatus, boardNeedUpdating, clearNeedUpda
     setNonBombCount(revealedBoard.newNonMinesCount);
   }
 
-  if (!markup) {
-    return (<div>Loading...</div>);
-  }
-
   return (
-    <div>
+    <div className={`board ${gameOver && 'board_inactive'}`}>
       { markup.map((singleCol) => (
-        <div className={`board ${gameOver && 'board_inactive'}`}>
+        <div>
           {(singleCol.map((singleItem) => (
             <Cell
               cell={singleItem}
               setEmojiStatus={setEmojiStatus}
               onClick={revealCell}
               onRightClick={toggleFlag}
+              gameOver={gameOver}
+              boardNeedUpdating={boardNeedUpdating}
+              clearNeedUpdate={clearNeedUpdate}
             />
           )))}
         </div>

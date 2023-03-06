@@ -10,6 +10,14 @@
     opacity: 0.8;
 }
 
+.cell-revealed {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .cell_flagged {
     background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -34px -51px;
 }
@@ -61,4 +69,8 @@
 
 .cell_eight {
     background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -119px -68px;
+}
+
+.cell_incorrect-bomb {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -119px -51px;
 }

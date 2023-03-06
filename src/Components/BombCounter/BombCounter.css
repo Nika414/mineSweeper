@@ -1,63 +1,53 @@
-.stopwatch {
+.bomb-counter {
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
-    justify-self: flex-end;
+    margin-left: 20px;
+    justify-self: flex-start;
 }
 
-.stopwatch__container {
-    display: flex;
-    flex-direction: row;
-}
-
-.stopwatch__item-span {
-    color: black;
-    font-size: 34px;
-    text-align: center;
-}
-.stopwatch__item {
+.bomb-counter__item {
 	width: 13px;
 	height: 23px;
 }
 
-.stopwatch__item_zero {
+.bomb-counter__item_zero {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -126px 0;
 }
 
-.stopwatch__item_one {
+.bomb-counter__item_one {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat 0 0;
 }
 
-.stopwatch__item_two {
+.bomb-counter__item_two {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -14px 0;
 }
 
-.stopwatch__item_three {
+.bomb-counter__item_three {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -28px 0;
 }
 
-.stopwatch__item_four {
+.bomb-counter__item_four {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -42px 0;
 }
 
-.stopwatch__item_five {
+.bomb-counter__item_five {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -56px 0;
 }
 
-.stopwatch__item_six {
+.bomb-counter__item_six {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -70px 0;
 }
 
-.stopwatch__item_seven {
+.bomb-counter__item_seven {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -84px 0;
 }
 
-.stopwatch__item_eight {
+.bomb-counter__item_eight {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -98px 0;
 }
 
-.stopwatch__item_nine {
+.bomb-counter__item_nine {
 	background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -112px 0;
 }

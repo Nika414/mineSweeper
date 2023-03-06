@@ -1,5 +1,12 @@
 .board {
     display: flex;
+    margin-top: 10px;
+    border-bottom: 3px solid #7b7b7b;
+    border-right: 3px solid #7b7b7b;
+    border-color: #7b7b7b #fff #fff #7b7b7b;
+    border-style: solid;
+    border-width: 3px;
+    box-sizing: border-box;
 }
 
 .board_inactive {
