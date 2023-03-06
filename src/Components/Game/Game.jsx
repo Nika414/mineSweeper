@@ -15,7 +15,7 @@ export default function Game({ bombAmount, width, height }) {
       <div className="game__header">
         <BombCounter bombCounter={bombCounter} />
         <Emoji emojiStatus={emojiStatus} onClick={() => setNeedUpdate(true)} />
-        <Stopwatch gameOver={gameOver} />
+        <Stopwatch gameOver={gameOver} boardNeedUpdating={needUpdate} />
       </div>
       <Board
         width={width}

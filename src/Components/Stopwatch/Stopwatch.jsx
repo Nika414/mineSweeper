@@ -2,22 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { numbersMapping } from '../../utils/constants';
 
 export default function Stopwatch({ gameOver }) {
-  const [stopwatch, setStopwatch] = useState(0);
-  let increment;
+  const [stopwatch, setStopwatch] = useState(null);
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     if (!gameOver) {
-      increment = setInterval(() => {
-        setStopwatch((time) => time + 1);
-      }, 1000);
+      setTimer(0);
+      setStopwatch(setInterval(() => {
+        setTimer((value) => {
+          if (value >= 999) {
+            clearInterval(stopwatch);
+            return 999;
+          }
+          return value + 1;
+        });
+      }, 1000));
+    } else {
+      clearInterval(stopwatch);
     }
-    if (gameOver) {
-      clearInterval(increment);
-    }
+    return () => clearInterval(stopwatch);
   }, [gameOver]);
 
   const formatTime = () => {
-    const getSeconds = `00${(stopwatch)}`.slice(-3);
+    const getSeconds = `00${(timer)}`.slice(-3);
     const secondsArr = Array.from(getSeconds);
 
     return (

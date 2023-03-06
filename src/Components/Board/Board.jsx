@@ -28,6 +28,7 @@ export default function Board({
       setNonBombCount(height * width - bombAmount);
       setGameOver(false);
       setEmojiStatus('smile');
+      setBombCounter(bombAmount);
     }
   }, [boardNeedUpdating]);
 
