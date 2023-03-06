@@ -6,7 +6,7 @@ import { revealZeroCells } from '../../utils/revealZeroCells';
 
 const bombAmount = 20;
 
-export default function Board({ setEmojiStatus, boardNeedUpdating }) {
+export default function Board({ setEmojiStatus, boardNeedUpdating, clearNeedUpdate }) {
   const [markup, setMarkup] = useState([]);
   const [bombLocation, setBombLocation] = useState([]);
   const [nonBombCount, setNonBombCount] = useState(0);
@@ -14,15 +14,19 @@ export default function Board({ setEmojiStatus, boardNeedUpdating }) {
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
-    const gridBoard = createGridBoard(16, 16, bombAmount);
-    setMarkup(gridBoard.board);
-    setBombLocation(gridBoard.bombLocation);
-    setNonBombCount(16 * 16 - 20);
+    if (boardNeedUpdating) {
+      const gridBoard = createGridBoard(16, 16, bombAmount);
+      setMarkup(gridBoard.board);
+      setBombLocation(gridBoard.bombLocation);
+      setNonBombCount(16 * 16 - 20);
+      clearNeedUpdate();
+      setGameOver(false);
+    }
   }, [boardNeedUpdating]);
 
   function toggleFlag(e, rowNum, colNum) {
     e.preventDefault();
-    const newMarkup = JSON.parse(JSON.stringify(markup));
+    const newMarkup = cloneDeep(markup);
     if (newMarkup[rowNum][colNum].value === 'B') {
       setBombFounded((prev) => (newMarkup[rowNum][colNum].flagged ? prev - 1 : prev + 1));
     } if (bombFounded === bombAmount) {

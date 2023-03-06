@@ -1,11 +1,12 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-plusplus */
+import { cloneDeep } from 'lodash';
+
 export const revealZeroCells = (originalArr, rowNum, colNum, newNonMinesCount) => {
-  const arr = JSON.parse(JSON.stringify(originalArr));
+  const arr = cloneDeep(originalArr);
 
   console.log(arr[rowNum][colNum]);
   if (arr[rowNum][colNum].revealed) {
-    // console.log(arr[rowNum][colNum])
     return;
   }
   const flipped = [];
