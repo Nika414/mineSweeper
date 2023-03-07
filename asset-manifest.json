@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/minesweeper/static/css/main.80e4d0b9.css",
-    "main.js": "/minesweeper/static/js/main.5975484e.js",
+    "main.css": "/minesweeper/static/css/main.428bf67e.css",
+    "main.js": "/minesweeper/static/js/main.d82ccf74.js",
     "static/media/SourceSansPro-Regular.ttf": "/minesweeper/static/media/SourceSansPro-Regular.df87f53caf449a3b7572.ttf",
     "static/media/Roboto-Regular.ttf": "/minesweeper/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Karla-Bold.ttf": "/minesweeper/static/media/Karla-Bold.623c61b6f8c6529800b2.ttf",
     "static/media/Karla-Regular.ttf": "/minesweeper/static/media/Karla-Regular.fa3a282cea1a68f3717d.ttf",
     "index.html": "/minesweeper/index.html",
-    "main.80e4d0b9.css.map": "/minesweeper/static/css/main.80e4d0b9.css.map",
-    "main.5975484e.js.map": "/minesweeper/static/js/main.5975484e.js.map"
+    "main.428bf67e.css.map": "/minesweeper/static/css/main.428bf67e.css.map",
+    "main.d82ccf74.js.map": "/minesweeper/static/js/main.d82ccf74.js.map"
   },
   "entrypoints": [
-    "static/css/main.80e4d0b9.css",
-    "static/js/main.5975484e.js"
+    "static/css/main.428bf67e.css",
+    "static/js/main.d82ccf74.js"
   ]
 }
