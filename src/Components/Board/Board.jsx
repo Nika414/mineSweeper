@@ -19,16 +19,17 @@ export default function Board({
   const [bombLocation, setBombLocation] = useState([]);
   const [nonBombCount, setNonBombCount] = useState(0);
   const [bombFounded, setBombFounded] = useState(0);
-
+  // const [isFirstClick, setIsFirstClick] = useState(true);
   useEffect(() => {
     if (boardNeedUpdating) {
       const gridBoard = createGridBoard(height, width, bombAmount);
       setMarkup(gridBoard.board);
       setBombLocation(gridBoard.bombLocation);
-      setNonBombCount(height * width - bombAmount);
+      setNonBombCount((height * width) - bombAmount);
       setGameOver(false);
       setEmojiStatus('smile');
       setBombCounter(bombAmount);
+      // setIsFirstClick(true);
     }
   }, [boardNeedUpdating]);
 
@@ -42,12 +43,21 @@ export default function Board({
       setEmojiStatus('win');
       setGameOver(true);
     }
-    console.log(2);
     newMarkup[rowNum][colNum].flagged = !newMarkup[rowNum][colNum].flagged;
     setMarkup(newMarkup);
   }
 
   function revealCell(rowNum, colNum) {
+    // if (isFirstClick) {
+    //   const gridBoard = createGridBoard(height, width, bombAmount);
+    //   setMarkup(gridBoard.board);
+    //   setBombLocation(gridBoard.bombLocation);
+    //   setNonBombCount(height * width - bombAmount);
+    //   setGameOver(false);
+    //   setEmojiStatus('smile');
+    //   setBombCounter(bombAmount);
+    //   setIsFirstClick(false);
+    // }
     const newMarkup = cloneDeep(markup);
     if (newMarkup[rowNum][colNum].value === 'B') {
       for (let i = 0; i < bombLocation.length; i += 1) {
@@ -59,7 +69,7 @@ export default function Board({
     }
     const revealedBoard = revealZeroCells(newMarkup, rowNum, colNum, nonBombCount);
     setMarkup(revealedBoard.arr);
-    setNonBombCount(revealedBoard.newNonMinesCount);
+    setNonBombCount(revealedBoard.newNonBombCount);
   }
 
   return (

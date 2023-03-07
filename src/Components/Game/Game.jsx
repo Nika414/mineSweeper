@@ -7,6 +7,7 @@ import Stopwatch from '../Stopwatch/Stopwatch';
 export default function Game({ bombAmount, width, height }) {
   const [emojiStatus, setEmojiStatus] = useState('smile');
   const [needUpdate, setNeedUpdate] = useState(true);
+  const [timerNeedUpdate, setTimerNeedUpate] = useState(true);
   const [bombCounter, setBombCounter] = useState(bombAmount);
   const [gameOver, setGameOver] = useState(false);
 
@@ -14,8 +15,8 @@ export default function Game({ bombAmount, width, height }) {
     <div className="game">
       <div className="game__header">
         <BombCounter bombCounter={bombCounter} />
-        <Emoji emojiStatus={emojiStatus} onClick={() => setNeedUpdate(true)} />
-        <Stopwatch gameOver={gameOver} boardNeedUpdating={needUpdate} />
+        <Emoji emojiStatus={emojiStatus} onClick={() => { setNeedUpdate(true); setTimerNeedUpate(false); }} />
+        <Stopwatch gameOver={gameOver} timerNeedUpdate={timerNeedUpdate} setTimerNeedUpate={setTimerNeedUpate} />
       </div>
       <Board
         width={width}
@@ -27,6 +28,7 @@ export default function Game({ bombAmount, width, height }) {
         setBombCounter={setBombCounter}
         gameOver={gameOver}
         setGameOver={setGameOver}
+        setNeedUpdate={setNeedUpdate}
       />
     </div>
   );

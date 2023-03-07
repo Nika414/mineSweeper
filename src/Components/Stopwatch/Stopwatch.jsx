@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { numbersMapping } from '../../utils/constants';
 
-export default function Stopwatch({ gameOver }) {
+export default function Stopwatch({
+  gameOver, timerNeedUpdate, setTimerNeedUpate,
+}) {
   const [stopwatch, setStopwatch] = useState(null);
   const [timer, setTimer] = useState(0);
 
@@ -17,11 +19,12 @@ export default function Stopwatch({ gameOver }) {
           return value + 1;
         });
       }, 1000));
-    } else {
+    } if (gameOver || (timerNeedUpdate !== false)) {
       clearInterval(stopwatch);
     }
+    setTimerNeedUpate(true);
     return () => clearInterval(stopwatch);
-  }, [gameOver]);
+  }, [gameOver, timerNeedUpdate]);
 
   const formatTime = () => {
     const getSeconds = `00${(timer)}`.slice(-3);
