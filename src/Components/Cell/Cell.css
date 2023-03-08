@@ -74,3 +74,6 @@
 .cell_incorrect-bomb {
     background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -119px -51px;
 }
+.cell_question {
+    background: url('../../images/minesweeper-sprites_9TPZzv3.png') no-repeat -51px -51px; 
+}

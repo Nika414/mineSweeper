@@ -19,7 +19,6 @@ export default function Board({
   const [bombLocation, setBombLocation] = useState([]);
   const [nonBombCount, setNonBombCount] = useState(0);
   const [bombFounded, setBombFounded] = useState(0);
-  // const [isFirstClick, setIsFirstClick] = useState(true);
   useEffect(() => {
     if (boardNeedUpdating) {
       const gridBoard = createGridBoard(height, width, bombAmount);
@@ -29,35 +28,44 @@ export default function Board({
       setGameOver(false);
       setEmojiStatus('smile');
       setBombCounter(bombAmount);
-      // setIsFirstClick(true);
     }
   }, [boardNeedUpdating]);
 
+  function handeBombFounded(prev, rowNum, colNum, newMarkup) {
+    if (!newMarkup[rowNum][colNum].flagged && !newMarkup[rowNum][colNum].question) { return prev + 1; }
+    if (newMarkup[rowNum][colNum].flagged && !newMarkup[rowNum][colNum].question) { return prev - 1; }
+    return prev;
+  }
   function toggleFlag(e, rowNum, colNum) {
     e.preventDefault();
     const newMarkup = cloneDeep(markup);
-    setBombCounter((prev) => prev - 1);
     if (newMarkup[rowNum][colNum].value === 'B') {
-      setBombFounded((prev) => (newMarkup[rowNum][colNum].flagged ? prev - 1 : prev + 1));
-    } if (bombFounded === bombAmount) {
+      setBombFounded((prev) => (handeBombFounded(prev, rowNum, colNum, newMarkup)));
+    }
+    if (bombFounded === bombAmount) {
       setEmojiStatus('win');
       setGameOver(true);
     }
-    newMarkup[rowNum][colNum].flagged = !newMarkup[rowNum][colNum].flagged;
-    setMarkup(newMarkup);
+    if (!newMarkup[rowNum][colNum].flagged && !newMarkup[rowNum][colNum].question) {
+      newMarkup[rowNum][colNum].flagged = true;
+      setBombCounter((prev) => prev - 1);
+      setMarkup(newMarkup);
+      return;
+    }
+    if (newMarkup[rowNum][colNum].question) {
+      newMarkup[rowNum][colNum].question = false;
+      setMarkup(newMarkup);
+      return;
+    }
+    if (newMarkup[rowNum][colNum].flagged && !newMarkup[rowNum][colNum].question) {
+      newMarkup[rowNum][colNum].flagged = false;
+      newMarkup[rowNum][colNum].question = true;
+      setBombCounter((prev) => prev + 1);
+      setMarkup(newMarkup);
+    }
   }
 
   function revealCell(rowNum, colNum) {
-    // if (isFirstClick) {
-    //   const gridBoard = createGridBoard(height, width, bombAmount);
-    //   setMarkup(gridBoard.board);
-    //   setBombLocation(gridBoard.bombLocation);
-    //   setNonBombCount(height * width - bombAmount);
-    //   setGameOver(false);
-    //   setEmojiStatus('smile');
-    //   setBombCounter(bombAmount);
-    //   setIsFirstClick(false);
-    // }
     const newMarkup = cloneDeep(markup);
     if (newMarkup[rowNum][colNum].value === 'B') {
       for (let i = 0; i < bombLocation.length; i += 1) {

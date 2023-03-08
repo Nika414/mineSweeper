@@ -15,6 +15,7 @@ export default function createGridBoard(row, col, bombsTotal) {
         rowNum,
         colNum,
         flagged: false,
+        question: false,
       });
     }
     board.push(subCol);

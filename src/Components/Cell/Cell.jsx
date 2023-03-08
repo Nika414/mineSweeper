@@ -34,7 +34,7 @@ export default function Cell({
       onClick={handleClick}
       onMouseDown={() => { setEmojiStatus('attention'); }}
       onMouseUp={() => { setEmojiStatus('smile'); }}
-      className={`cell ${selector} ${cell.revealed && cellsMapping[cell.value]} ${cell.flagged && 'cell_flagged'}`}
+      className={`cell ${selector} ${cell.revealed && cellsMapping[cell.value]} ${cell.flagged && 'cell_flagged'} ${cell.question && 'cell_question'}`}
     />
   );
 }
